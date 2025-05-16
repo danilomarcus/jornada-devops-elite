@@ -16,7 +16,7 @@ jobs:
           dotnet-version: 8.x
 
       - name: Executar testes
-        working-directory: ./02/review/src/Review-Filmes.Test.Unit
+        working-directory: ./02-review/src/Review-Filmes.Test.Unit
         run: dotnet test
 
       - name: Login to Docker Hub
