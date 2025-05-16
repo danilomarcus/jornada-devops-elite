@@ -39,7 +39,16 @@ jobs:
     needs: [ci]
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Obter código"
-      - run: echo "Configurar o Kubeconfig"
-      - run: echo "Executar o apply"   
-  
+      - name: Obter código do projeto
+        uses: actions/checkout@v4
+      - name: preparar Kubeconfig
+      - uses: azure/k8s-set-context@v4
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.K8S_CONFIG }}
+      - name: Executar apply
+        uses: Azure/k8s-deploy@v5
+        with:
+          manifests: |
+            ./02-review/k8s/deployment.yaml
+          images: 'danilomarcus/review-jornada:v${{ github.run_number }}'
