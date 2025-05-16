@@ -42,7 +42,7 @@ jobs:
       - name: Obter código do projeto
         uses: actions/checkout@v4
       - name: preparar Kubeconfig
-      - uses: azure/k8s-set-context@v4
+        uses: azure/k8s-set-context@v4
         with:
           method: kubeconfig
           kubeconfig: ${{ secrets.K8S_CONFIG }}
