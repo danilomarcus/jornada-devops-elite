@@ -46,7 +46,7 @@ kind: Deployment
 metadata:
   name: review
 spec: 
-  replicas: 10
+  replicas: 1
   selector:
     matchLabels:
       app: review
@@ -54,6 +54,10 @@ spec:
     metadata:
       labels:
         app: review
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
     spec:
       containers:
         - name: review
